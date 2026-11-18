@@ -63,8 +63,12 @@ We conducted field surveys across various rangeland sites in Nepal, focusing on 
 import leafmap.foliumap as leafmap
 from branca.element import Element, MacroElement
 from jinja2 import Template
+import os
+from dotenv import load_dotenv
 
-STADIA_API_KEY = "5ee9f138-1e6d-49a4-96b7-846fa2c106d8"
+load_dotenv()
+STADIA_API_KEY = os.getenv("STADIA_API_KEY")
+
 # 1. Increase map height to fill the viewport
 m_nat = leafmap.Map(
     center=[28.076559, 84.201371],
@@ -125,8 +129,11 @@ import leafmap.foliumap as leafmap
 from branca.element import Element, MacroElement
 from jinja2 import Template
 import geopandas as gpd
+import os
+from dotenv import load_dotenv
 
-STADIA_API_KEY = "5ee9f138-1e6d-49a4-96b7-846fa2c106d8"
+load_dotenv()
+STADIA_API_KEY = os.getenv("STADIA_API_KEY")
 provinces = gpd.read_file(r"data/province_bounds_json.geojson")
 karnali = provinces[provinces['name_eng'] == 'Karnali'] #already in WGS84
 
