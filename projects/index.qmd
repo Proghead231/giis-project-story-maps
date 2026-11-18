@@ -1,0 +1,11 @@
+---
+title: "Project Stories"
+listing:
+  contents: "*/index.qmd"
+  type: grid
+  sort: "date desc"
+  categories: true
+  fields: [image, title, subtitle, date]
+---
+
+Select a project below to explore the interactive story and datasets.

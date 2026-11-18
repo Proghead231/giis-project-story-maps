@@ -1,0 +1,233 @@
+---
+title: "Rangelands in Change"
+subtitle: "Exploring Earth's most extensive socio-ecological systems."
+date: "2026-11-17"
+categories: [Rangelands, Remote Sensing, Karnali]
+image: images/cover.png
+format:
+  closeread-html:
+    remove-header-space: true
+    cr-style:
+      narrative-background-color-overlay: "rgba(20, 24, 20, 0.78)"
+      narrative-text-color-overlay: "#ffffff"
+      narrative-border-radius: "8px"
+      narrative-font-size: "1.15rem"
+    css: styles.css
+---
+
+:::{.cr-section .hero-section layout="overlay-center"}
+
+**Rangelands in Change**\
+*Exploring Earth's most extensive socio-ecological systems.* @cr-bg
+
+:::{#cr-bg .full-bg}
+![](images/cover.png)
+:::
+
+:::
+
+:::{.cr-section .section-white layout="overlay-right"}
+
+## What are rangelands? {.section-title-left}
+
+Rangelands represent the most extensive land cover type on Earth.<br><br>
+Stoddard et al. (1975) define rangelands as ‘those areas of the world which, due to physical limitations such as low and erratic precipitation, rough topography, poor drainage, or cold temperatures are unsuited to cultivation and serve as a source of forage for native and domestic animals as well as a source of wood products, water, and wildlife’.<br><br>
+Globally, rangelands cover approximately 25-54% of the
+terrestrial surface, depending on the definition used (AlBukhari et al. 2018; Gamoun et al. 2018; Tiscornia et al.
+2019; Briske et al. 2020; ILRI 2021).<br><br>
+These rangelands are critical socio-ecological systems due to their economic, environmental, and socio-cultural importance. @cr-bg2
+
+:::{#cr-bg2 .full-bg}
+![](images/cover2.png)
+:::
+
+:::
+
+::: {.cr-section layout="sidebar-left"}
+
+## Rangelands of Nepal
+Nepal’s rangelands span the high-altitude Trans-Himalayan belt down to the mid-hills, covering critical ecological and pastoral gradients. Nationally, they support extensive livestock production and wildlife corridors. @cr-map-nat
+
+---
+
+### Provincial Dynamics: Karnali Province
+Karnali Province, the largest province in Nepal, is home to diverse rangeland ecosystems. These areas are vital for local livelihoods, supporting pastoral communities and serving as habitats for endemic species. @cr-map-karnali
+
+---
+
+### Field Surveyed Rangelands
+We conducted field surveys across various rangeland sites in Nepal, focusing on vegetation composition, soil health, and grazing patterns. These surveys provide ground-truth data to validate remote sensing analyses. @cr-map-field
+
+:::{#cr-map-nat}
+```{python}
+import leafmap.foliumap as leafmap
+from branca.element import Element, MacroElement
+from jinja2 import Template
+
+STADIA_API_KEY = "5ee9f138-1e6d-49a4-96b7-846fa2c106d8"
+# 1. Increase map height to fill the viewport
+m_nat = leafmap.Map(
+    center=[28.076559, 84.201371],
+    zoom=5,
+    height=1000,
+    tiles = None
+)
+m_nat.add_basemap("Stadia.StamenTerrain", api_key=STADIA_API_KEY)
+
+m_nat.add_raster(
+    r"data\nepal_rangeland_image.tif",
+    layer_name="Nepal Rangelands",
+    vmin=1,
+    vmax=1,
+    nodata=0,
+    colormap=["#1eff87", "#1eff87"],
+    opacity=1.0,
+    zoom_to_layer=False,
+)
+
+
+# 3. Force full-screen size recalculation and centering
+class RecenterMap(MacroElement):
+    def __init__(self, lat, lon, zoom):
+        super().__init__()
+        self._template = Template(f"""
+            {{% macro script(this, kwargs) %}}
+            window.addEventListener("load", function() {{
+                setTimeout(function() {{
+                    var map = {{{{ this._parent.get_name() }}}};
+                    map.invalidateSize();
+                    map.setView([{lat}, {lon}], {zoom});
+                }}, 300);
+            }});
+            {{% endmacro %}}
+        """)
+
+m_nat.add_child(RecenterMap(28.076559, 84.201371, 7))
+ 
+# 4. Inject Multiply blend mode for the 2nd layer (your raster)
+blend_css = Element("""
+<style>
+  .leaflet-tile-pane .leaflet-layer:nth-child(2) {
+      mix-blend-mode: multiply;
+  }
+</style>
+""")
+m_nat.get_root().html.add_child(blend_css)
+
+# 5. Render the map as the final expression in the cell
+m_nat
+```
+:::
+
+:::{#cr-map-karnali}
+```{python}
+import leafmap.foliumap as leafmap
+from branca.element import Element, MacroElement
+from jinja2 import Template
+import geopandas as gpd
+
+STADIA_API_KEY = "5ee9f138-1e6d-49a4-96b7-846fa2c106d8"
+provinces = gpd.read_file(r"data/province_bounds_json.geojson")
+karnali = provinces[provinces['name_eng'] == 'Karnali'] #already in WGS84
+
+minx, miny, maxx, maxy = karnali.total_bounds
+karnali_bounds = [[miny, minx], [maxy, maxx]]
+center_lat = (miny + maxy) / 2
+center_lon = (minx + maxx) / 2
+
+
+# 1. Increase map height to fill the viewport
+m_karnali = leafmap.Map(
+    center=[center_lat, center_lon],
+    zoom=10,
+    height=1000,
+    tiles = None
+)
+m_karnali.add_basemap("Stadia.StamenTerrain", api_key=STADIA_API_KEY)
+
+m_karnali.add_raster(
+    r"data\nepal_rangeland_image.tif",
+    layer_name="Nepal Rangelands",
+    vmin=1,
+    vmax=1,
+    nodata=0,
+    colormap=["#1eff87", "#1eff87"],
+    opacity=1.0,
+    zoom_to_layer=False,
+)
+
+m_karnali.add_gdf(
+    karnali,
+    layer_name="Karnali Province",
+    style={
+        "color": "#1b4332",
+        "weight": 2.5,
+        "fillOpacity": 0.0,
+        "dashArray": "5, 5"
+    },
+    info_mode=None
+)
+
+# 5. Scroll-aware resize & fitBounds macro (prevents gray tiles when revealed on scroll)
+class FitBoundsOnReveal(MacroElement):
+    def __init__(self, bounds):
+        super().__init__()
+        self._template = Template(f"""
+            {{% macro script(this, kwargs) %}}
+            function adjustMap() {{
+                var map = {{{{ this._parent.get_name() }}}};
+                map.invalidateSize();
+                map.fitBounds({bounds}, {{padding: [25, 25]}});
+            }}
+            window.addEventListener("load", function() {{
+                setTimeout(adjustMap, 300);
+            }});
+            var container = document.getElementById("{{{{ this._parent.get_name() }}}}");
+            if (container && typeof ResizeObserver !== "undefined") {{
+                var ro = new ResizeObserver(function() {{
+                    adjustMap();
+                }});
+                ro.observe(container);
+            }}
+            {{% endmacro %}}
+        """)
+
+# 3. Force full-screen size recalculation and centering
+class RecenterMap(MacroElement):
+    def __init__(self, lat, lon, zoom):
+        super().__init__()
+        self._template = Template(f"""
+            {{% macro script(this, kwargs) %}}
+            window.addEventListener("load", function() {{
+                setTimeout(function() {{
+                    var map = {{{{ this._parent.get_name() }}}};
+                    map.invalidateSize();
+                    map.setView([{lat}, {lon}], {zoom});
+                }}, 300);
+            }});
+            {{% endmacro %}}
+        """)
+
+m_karnali.add_child(FitBoundsOnReveal(karnali_bounds))
+
+# 4. Inject Multiply blend mode for the 2nd layer (your raster)
+blend_css = Element("""
+<style>
+  .leaflet-tile-pane .leaflet-layer:nth-child(2) {
+      mix-blend-mode: multiply;
+  }
+</style>
+""")
+m_karnali.get_root().html.add_child(blend_css)
+
+# 5. Render the map as the final expression in the cell
+m_karnali
+```
+
+:::
+
+:::{#cr-map-field}
+<!-- Will be added later. -->
+:::
+
+:::

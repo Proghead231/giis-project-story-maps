@@ -1,0 +1,9 @@
+---
+title: "Mapping Landscapes & Livelihoods"
+subtitle: "Interactive spatial stories, remote sensing research, and field insights"
+page-layout: full
+---
+
+Welcome to our interactive research portal. Here we combine satellite earth observation with ground-level field surveys and local knowledge to study the complex relationships between landscapes and human livelihoods.
+
+[Explore Our Stories](projects/index.qmd){.btn .btn-primary}

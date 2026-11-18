@@ -1,0 +1,86 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Mapping Landscapes & Livelihoods",
+    "section": "",
+    "text": "Welcome to our interactive research portal. Here we combine satellite earth observation with ground-level field surveys and local knowledge to study the complex relationships between landscapes and human livelihoods.\nExplore Our Stories"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "The Global Institute for Interdisciplinary Studies (GIIS) is an educational institution based in Kathmandu, Nepal. GIIS promotes and conducts interdisciplinary research to generate credible, salient and legitimate knowledge that catalyzes a transformative change in the developmental policies and practices in Nepal and elsewhere. Through deep engagement with decision makers and multiple stakeholders, GIIS aims to shape developmental agenda that is socially-just, environmentally sustainable, and economically viable. Our interdisciplinary team has a strong track record of extensive research in Climate change and Landuse change, Natural resources and the Environment, Geohazards and Disasters, Society and Migration, Global health and Nutrition, Gender and Equality. Currently, we have 15 research fellows and our team is gradually expanding"
+  },
+  {
+    "objectID": "projects/index.html",
+    "href": "projects/index.html",
+    "title": "Project Stories",
+    "section": "",
+    "text": "Select a project below to explore the interactive story and datasets.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRangelands in Change\n\n\nExploring Earth’s most extensive socio-ecological systems.\n\n\n\nNov 17, 2026\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "projects/nepal-rangelands/index.html",
+    "href": "projects/nepal-rangelands/index.html",
+    "title": "Rangelands in Change",
+    "section": "",
+    "text": "Rangelands in Change\nExploring Earth’s most extensive socio-ecological systems."
+  },
+  {
+    "objectID": "projects/nepal-rangelands/index.html#chapter-1-a-life-connected-to-pasture",
+    "href": "projects/nepal-rangelands/index.html#chapter-1-a-life-connected-to-pasture",
+    "title": "Living Pastures of the Himalaya",
+    "section": "Chapter 1: A Life Connected to Pasture",
+    "text": "Chapter 1: A Life Connected to Pasture\nYour regular story content starts here, underneath the full-screen cover page, returning to standard page margins.\n\n\n\n\nAs you scroll further into the story, your interactive maps and chapters take over.\n\n\n\n\n\n\n[Map Goes Here]"
+  },
+  {
+    "objectID": "projects/nepal-rangelands/index.html#what-are-rangelands",
+    "href": "projects/nepal-rangelands/index.html#what-are-rangelands",
+    "title": "Rangelands in Change",
+    "section": "What are rangelands?",
+    "text": "What are rangelands?"
+  },
+  {
+    "objectID": "projects/nepal-rangelands/index.html#what-are-rangelands-cr-bg2",
+    "href": "projects/nepal-rangelands/index.html#what-are-rangelands-cr-bg2",
+    "title": "Rangelands in Change",
+    "section": "What are Rangelands? @cr-bg2",
+    "text": "What are Rangelands? @cr-bg2"
+  },
+  {
+    "objectID": "projects/nepal-rangelands/index.html#rangelands-in-nepal-.section-title-left-cr-map",
+    "href": "projects/nepal-rangelands/index.html#rangelands-in-nepal-.section-title-left-cr-map",
+    "title": "Rangelands in Change",
+    "section": "Rangelands in Nepal {.section-title-left} @cr-map",
+    "text": "Rangelands in Nepal {.section-title-left} @cr-map"
+  },
+  {
+    "objectID": "projects/nepal-rangelands/index.html#rangelands-in-nepal",
+    "href": "projects/nepal-rangelands/index.html#rangelands-in-nepal",
+    "title": "Rangelands in Change",
+    "section": "Rangelands in Nepal",
+    "text": "Rangelands in Nepal"
+  },
+  {
+    "objectID": "projects/nepal-rangelands/index.html#rangelands-of-nepal",
+    "href": "projects/nepal-rangelands/index.html#rangelands-of-nepal",
+    "title": "Rangelands in Change",
+    "section": "Rangelands of Nepal",
+    "text": "Rangelands of Nepal"
+  },
+  {
+    "objectID": "projects/nepal-rangelands/test1.html",
+    "href": "projects/nepal-rangelands/test1.html",
+    "title": "Spatial & Ecological Stories",
+    "section": "",
+    "text": "import folium\nimport leafmap.foliumap as leafmap\nimport xyzservices.providers as xyz\n\n\nm = leafmap.Map(\n    center=[28.076559, 84.201371],\n    zoom=15,\n    height=1000,\n)\n\nm.add_basemap(\"CartoDB.Positron\")\n\n# 2. Add Esri's neutral hillshade on top with transparency\nfolium.TileLayer(\n    tiles=xyz.Esri.WorldShadedRelief.build_url(),\n    attr=xyz.Esri.WorldShadedRelief.attribution,\n    name=\"Terrain Shading\",\n    opacity=0.45,\n    max_native_zoom=13,  # Prevents \"Map data not yet available\" errors\n).add_to(m)\n\n# Add multiple terrain layers to compare\nm.add_basemap(\"Esri.WorldShadedRelief\")\nm.add_basemap(\"Esri.WorldTerrain\")\n\n&lt;folium.raster_layers.TileLayer at 0x1ae89bb04d0&gt;\n\n\n\nimport leafmap.foliumap as leafmap\nfrom branca.element import Element, MacroElement\nfrom jinja2 import Template\n\n\n```{python}\nimport leafmap.foliumap as leafmap\nfrom branca.element import Element, MacroElement\nfrom jinja2 import Template\n\n# 1. Increase map height to fill the viewport\nm = leafmap.Map(\n    center=[28.076559, 84.201371],\n    zoom=8,\n    height=1000,\n    tiles = None\n)\nm.add_basemap(\"Esri.WorldShadedRelief\")\n\nm.add_raster(\n    r\"data\\nepal_rangeland_image.tif\",\n    layer_name=\"Nepal Rangelands\",\n    vmin=1,\n    vmax=1,\n    nodata=0,\n    colormap=[\"#2e7d32\", \"#2e7d32\"],\n    opacity=1.0,\n    zoom_to_layer=False,\n)\n\n# 3. Force full-screen size recalculation and centering\nclass RecenterMap(MacroElement):\n    def __init__(self, lat, lon, zoom):\n        super().__init__()\n        self._template = Template(f\"\"\"\n            {{% macro script(this, kwargs) %}}\n            window.addEventListener(\"load\", function() {{\n                setTimeout(function() {{\n                    var map = {{{{ this._parent.get_name() }}}};\n                    map.invalidateSize();\n                    map.setView([{lat}, {lon}], {zoom});\n                }}, 300);\n            }});\n            {{% endmacro %}}\n        \"\"\")\n\nm.add_child(RecenterMap(28.076559, 84.201371, 8))\n\n# 4. Inject Multiply blend mode for the 2nd layer (your raster)\nblend_css = Element(\"\"\"\n&lt;style&gt;\n  .leaflet-tile-pane .leaflet-layer:nth-child(2) {\n      mix-blend-mode: multiply;\n  }\n&lt;/style&gt;\n\"\"\")\nm.get_root().html.add_child(blend_css)\n\n# 5. Render the map as the final expression in the cell\nm\n```\n\n\n\n\n\nimport leafmap.foliumap as leafmap\n\n# Print all available basemap names\nprint(list(leafmap.basemaps.keys()))\n\n# Filter specifically for terrain or topo options\n# terrain_options = [\n#     k for k in leafmap.basemaps.keys() if \"terrain\" in k.lower() or \"topo\" in k.lower()\n# ]\n# print(\"Terrain/Topo options:\", terrain_options)\n\n['OpenStreetMap', 'ROADMAP', 'SATELLITE', 'TERRAIN', 'HYBRID', 'FWS NWI Wetlands', 'FWS NWI Wetlands Raster', 'NLCD 2021 CONUS Land Cover', 'NLCD 2019 CONUS Land Cover', 'NLCD 2016 CONUS Land Cover', 'NLCD 2013 CONUS Land Cover', 'NLCD 2011 CONUS Land Cover', 'NLCD 2008 CONUS Land Cover', 'NLCD 2006 CONUS Land Cover', 'NLCD 2004 CONUS Land Cover', 'NLCD 2001 CONUS Land Cover', 'USGS NAIP Imagery', 'USGS NAIP Imagery False Color', 'USGS NAIP Imagery NDVI', 'USGS Hydrography', 'USGS 3DEP Elevation', 'USGS 3DEP Elevation Index', 'ESA WorldCover 2020', 'ESA WorldCover 2020 S2 FCC', 'ESA WorldCover 2020 S2 TCC', 'ESA WorldCover 2021', 'ESA WorldCover 2021 S2 FCC', 'ESA WorldCover 2021 S2 TCC', 'USGS.Imagery', 'BaseMapDE.Color', 'BaseMapDE.Grey', 'BasemapAT.basemap', 'BasemapAT.grau', 'BasemapAT.highdpi', 'BasemapAT.orthofoto', 'BasemapAT.overlay', 'BasemapAT.surface', 'BasemapAT.terrain', 'CartoDB.DarkMatter', 'CartoDB.DarkMatterNoLabels', 'CartoDB.DarkMatterOnlyLabels', 'CartoDB.Positron', 'CartoDB.PositronNoLabels', 'CartoDB.PositronOnlyLabels', 'CartoDB.Voyager', 'CartoDB.VoyagerLabelsUnder', 'CartoDB.VoyagerNoLabels', 'CartoDB.VoyagerOnlyLabels', 'CyclOSM', 'Esri.AntarcticBasemap', 'Esri.AntarcticImagery', 'Esri.ArcticImagery', 'Esri.ArcticOceanBase', 'Esri.ArcticOceanReference', 'Esri.NatGeoWorldMap', 'Esri.OceanBasemap', 'Esri.WorldGrayCanvas', 'Esri.WorldPhysical', 'Esri.WorldShadedRelief', 'Esri.WorldTerrain', 'FreeMapSK', 'Gaode.Normal', 'Gaode.Satellite', 'HikeBike.HikeBike', 'HikeBike.HillShading', 'JusticeMap.americanIndian', 'JusticeMap.asian', 'JusticeMap.black', 'JusticeMap.hispanic', 'JusticeMap.income', 'JusticeMap.multi', 'JusticeMap.nonWhite', 'JusticeMap.plurality', 'JusticeMap.white', 'MtbMap', 'NASAGIBS.ASTER_GDEM_Greyscale_Shaded_Relief', 'NASAGIBS.BlueMarble', 'NASAGIBS.BlueMarble3031', 'NASAGIBS.BlueMarble3413', 'NASAGIBS.BlueMarbleBathymetry3031', 'NASAGIBS.BlueMarbleBathymetry3413', 'NASAGIBS.MEaSUREsIceVelocity3031', 'NASAGIBS.MEaSUREsIceVelocity3413', 'NASAGIBS.ModisAquaBands721CR', 'NASAGIBS.ModisAquaTrueColorCR', 'NASAGIBS.ModisTerraAOD', 'NASAGIBS.ModisTerraBands367CR', 'NASAGIBS.ModisTerraBands721CR', 'NASAGIBS.ModisTerraChlorophyll', 'NASAGIBS.ModisTerraLSTDay', 'NASAGIBS.ModisTerraSnowCover', 'NASAGIBS.ModisTerraTrueColorCR', 'NASAGIBS.ViirsEarthAtNight2012', 'NASAGIBS.ViirsTrueColorCR', 'OPNVKarte', 'OneMapSG.Default', 'OneMapSG.Grey', 'OneMapSG.LandLot', 'OneMapSG.Night', 'OneMapSG.Original', 'OpenAIP', 'OpenFireMap', 'OpenRailwayMap', 'OpenSeaMap', 'OpenSnowMap.pistes', 'OpenStreetMap.BZH', 'OpenStreetMap.CAT', 'OpenStreetMap.CH', 'OpenStreetMap.DE', 'OpenStreetMap.HOT', 'OpenStreetMap.Mapnik', 'OpenTopoMap', 'SafeCast', 'Stadia.AlidadeSatellite', 'Stadia.AlidadeSmooth', 'Stadia.AlidadeSmoothDark', 'Stadia.OSMBright', 'Stadia.Outdoors', 'Stadia.StamenTerrain', 'Stadia.StamenTerrainBackground', 'Stadia.StamenTerrainLabels', 'Stadia.StamenTerrainLines', 'Stadia.StamenToner', 'Stadia.StamenTonerBackground', 'Stadia.StamenTonerBlacklite', 'Stadia.StamenTonerDark', 'Stadia.StamenTonerLabels', 'Stadia.StamenTonerLines', 'Stadia.StamenTonerLite', 'Stadia.StamenWatercolor', 'Strava.All', 'Strava.Ride', 'Strava.Run', 'Strava.Water', 'Strava.Winter', 'SwissFederalGeoportal.JourneyThroughTime', 'SwissFederalGeoportal.NationalMapColor', 'SwissFederalGeoportal.NationalMapGrey', 'SwissFederalGeoportal.SWISSIMAGE', 'TopPlusOpen.Color', 'TopPlusOpen.Grey', 'UN.ClearMap', 'USGS.USImagery', 'USGS.USImageryTopo', 'USGS.USTopo', 'WaymarkedTrails.cycling', 'WaymarkedTrails.hiking', 'WaymarkedTrails.mtb', 'WaymarkedTrails.riding', 'WaymarkedTrails.skating', 'WaymarkedTrails.slopes', 'nlmaps.grijs', 'nlmaps.luchtfoto', 'nlmaps.pastel', 'nlmaps.standaard', 'nlmaps.water']"
+  },
+  {
+    "objectID": "projects/nepal-rangelands/index.html#rangelands-of-nepal-1",
+    "href": "projects/nepal-rangelands/index.html#rangelands-of-nepal-1",
+    "title": "Rangelands in Change",
+    "section": "Rangelands of Nepal",
+    "text": "Rangelands of Nepal"
+  }
+]
