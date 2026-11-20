@@ -149,7 +149,7 @@
   background-color: transparent !important;
 }
 .cr-section.sidebar-left {
-  background-color: #d9d9d9;         /* dark green */
+  background-color: #ffffff;         /* dark green */
 }
 
 .sidebar-left section.narrative.trigger {
@@ -168,12 +168,33 @@
   margin-bottom: 0.25rem !important;
 }
 
-.rangeland-stats strong {
-  display: block;
-  font-size: 1.6rem;
+.rangeland-nepal .narrative h2,
+.rangeland-nepal .narrative h3 {
+  font-family: "Be Vietnam Pro", sans-serif;
+  font-size: 2rem !important;
   font-weight: 700;
-  color: #2a4034;
-  line-height: 1;
+  color: #000000 !important;
+}
+
+.rangeland-nepal .narrative {
+  font-family: "Be Vietnam Pro", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.rangeland-nepal .rangeland-stats {
+  font-family: "Be Vietnam Pro", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.rangeland-nepal .rangeland-stats strong {
+  display: block;
+  font-family: "Be Vietnam Pro", sans-serif;
+  font-size: 2.75rem;
+  font-weight: 500;
+  color: #2780e3;
+  line-height: 1.1;
   margin-bottom: 0 !important;   /* was 0.25rem */
 }
 
@@ -191,14 +212,6 @@
 
 .rangeland-stats p {
   margin: 0 !important;
-}
-
-.rangeland-stats strong {
-  display: block;
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: #2a4034;
-  line-height: 1.1;
 }
 
 /* Enable mouse events and interaction across all Leaflet map containers */
