@@ -2,7 +2,17 @@
 title: "Mapping Landscapes & Livelihoods"
 subtitle: "Interactive spatial stories, remote sensing research, and field insights"
 page-layout: full
+title-block-banner: "rgba(20, 24, 20, 0.78)"
+title-block-banner-color: "#ffffff"
+format:
+    html:
+        css: styles.css
+        mainfont: "Be Vietnam Pro"
 ---
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;700&display=swap');
+</style>
 
 Welcome to our interactive research portal. Here we combine satellite earth observation with ground-level field surveys and local knowledge to study the complex relationships between landscapes and human livelihoods.
 

@@ -32,6 +32,8 @@ format:
 ## Rangelands in Nepal
 Rangelands provide a wide range of ecosystem services including forage, water, carbon storage, biodiversity habitat, and cultural value. @cr-services
 
+![Yarsagumba (top left), Wool (top right), Churpi (bottom left), Woman milking a Yak (bottom right)](images/rangeland_services3.png)
+
 [Nepal's rangelands span the high-altitude Trans-Himalayan belt down to the mid-hills, covering critical ecological and pastoral gradients.]{.map-step data-view="nat"} Nationally, they support extensive livestock production and wildlife corridors.
 <span class="rangeland-stats"><strong>2.1 M ha</strong>Total rangeland area<br><br><strong>14%</strong>of Nepal<br><br></span> @cr-map
 

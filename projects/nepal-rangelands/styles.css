@@ -141,7 +141,7 @@
 }
 
 .cr-section.sidebar-left [id*="cr-map"] {
-  margin-top: 2rem !important;
+  margin-top: 4rem !important;
   height: calc(75vh - 2rem) !important;
 }
 
