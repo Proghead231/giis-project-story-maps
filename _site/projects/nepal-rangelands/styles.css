@@ -100,7 +100,7 @@
 }
 
 /* Wrapper owns width + height */
-[id*="cr-map-"] {
+[id*="cr-map"] {
   width: 98% !important;               /* keep your 98% here, only here */
   height: 75vh !important;
   min-height: 0 !important;
@@ -112,12 +112,12 @@
 }
 
 /* Descendants fill it — no 98%, no 75vh, no min-height */
-[id*="cr-map-"] .cell,
-[id*="cr-map-"] .cell-output,
-[id*="cr-map-"] .cell-output-display,
-[id*="cr-map-"] .folium-map,
-[id*="cr-map-"] .leaflet-container,
-[id*="cr-map-"] div[style*="height"] {
+[id*="cr-map"] .cell,
+[id*="cr-map"] .cell-output,
+[id*="cr-map"] .cell-output-display,
+[id*="cr-map"] .folium-map,
+[id*="cr-map"] .leaflet-container,
+[id*="cr-map"] div[style*="height"] {
   width: 100% !important;
   height: 100% !important;
   min-height: 0 !important;
@@ -129,7 +129,7 @@
   overflow: hidden !important;
 }
 
-.cr-section.sidebar-left [id*="cr-map-"] {
+.cr-section.sidebar-left [id*="cr-map"] {
   margin-top: 2rem !important;
   height: calc(75vh - 2rem) !important;
 }
@@ -195,7 +195,7 @@
 .sticky-col .cell,
 .sticky-col .cell-output,
 .sticky-col .cell-output-display,
-[id*="cr-map-"],
+[id*="cr-map"],
 .leaflet-container,
 .leaflet-pane,
 .leaflet-control-container {

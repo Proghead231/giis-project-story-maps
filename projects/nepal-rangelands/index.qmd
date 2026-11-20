@@ -31,44 +31,43 @@ format:
 
 ## Rangelands in Nepal
 
-Nepal's rangelands span the high-altitude Trans-Himalayan belt down to the mid-hills, covering critical ecological and pastoral gradients. Nationally, they support extensive livestock production and wildlife corridors.<span class="rangeland-stats"><strong>2.1 M ha</strong>Total rangeland area<br><br><strong>14%</strong>of Nepal<br><br></span> @cr-map-nat
+[Nepal's rangelands span the high-altitude Trans-Himalayan belt down to the mid-hills, covering critical ecological and pastoral gradients.]{.map-step data-view="nat"} Nationally, they support extensive livestock production and wildlife corridors.<span class="rangeland-stats"><strong>2.1 M ha</strong>Total rangeland area<br><br><strong>14%</strong>of Nepal<br><br></span> @cr-map
 
 ### Provincial Dynamics: Karnali Province
-Karnali Province, the largest province in Nepal, is home to diverse rangeland ecosystems. These areas are vital for local livelihoods, supporting pastoral communities and serving as habitats for endemic species. @cr-map-karnali
+[Karnali Province, the largest province in Nepal, is home to diverse rangeland ecosystems.]{.map-step data-view="karnali"} These areas are vital for local livelihoods, supporting pastoral communities and serving as habitats for endemic species. @cr-map
 
 ### Field Surveyed Rangelands
-We conducted field surveys across various rangeland sites in Nepal, focusing on vegetation composition, soil health, and grazing patterns. These surveys provide ground-truth data to validate remote sensing analyses. @cr-map-field
+[We conducted field surveys across various rangeland sites in Nepal,]{.map-step data-view="field"} focusing on vegetation composition, soil health, and grazing patterns. These surveys provide ground-truth data to validate remote sensing analyses. @cr-map
 
-
-:::{#cr-map-nat}
+:::{#cr-map}
 ```{python}
-import folium
-import importlib
 import scripts.maps as maps
-importlib.reload(maps)
-maps.make_national_map()
+maps.make_map()
 ```
 :::
 
-:::{#cr-map-karnali}
-```{python}
-import folium
-import importlib
-import scripts.maps as maps
-importlib.reload(maps)
-maps.make_karnali_map()
-```
- 
 :::
 
-:::{#cr-map-field}
-```{python}
-import folium
-import importlib
-import scripts.maps as maps
-importlib.reload(maps)
-maps.make_field_map()
+```{=html}
+<script>
+(function () {
+  var current = null;
+  function go(view) {
+    if (view === current) return;
+    var frame = document.querySelector("#cr-map iframe");
+    if (frame && frame.contentWindow && frame.contentWindow.goToView) {
+      frame.contentWindow.goToView(view);
+      current = view;
+    }
+  }
+  window.addEventListener("load", function () {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) go(e.target.dataset.view);
+      });
+    }, { rootMargin: "-40% 0px -40% 0px" });   // fires when the span is near mid-screen
+    document.querySelectorAll(".map-step").forEach(function (el) { io.observe(el); });
+  });
+})();
+</script>
 ```
-::: 
-
-::: 
