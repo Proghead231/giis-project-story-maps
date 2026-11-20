@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;700&display=swap');
+
 .cr-section:not(.sidebar-left) .sticky-col {
   background-color: #ffffff !important;
 }
@@ -21,15 +23,22 @@
 /* Hero section title */
 .hero-section strong {
   display: block;
-  font-size: 3.5rem !important;
+  position: relative;
+  top: 25px;
+  font-family: "Be Vietnam Pro", sans-serif;
+  font-weight: 500;
+  font-size: 4rem !important;
   line-height: 1.1 !important;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.7rem; 
 }
 
 /* Hero subtitle */
 .hero-section em {
   display: block;
-  font-size: 1.6rem !important;
+  font-family: "Be Vietnam Pro", sans-serif;
+  font-weight: 10;
+  font-style: normal;
+  font-size: 1.2rem !important;
   line-height: 1.4 !important;
 }
 
@@ -50,7 +59,9 @@
 
 .hero-section .hero-logo {
   display: inline-block;
-  max-height: 70px;        /* tune: 40–80px usually reads well under a 3.5rem title */
+  background-color: rgba(255, 255, 255, 0.705);
+  max-height: 63px;        /* reduced by about 10% */
+  padding: 6px;            /* white backing around the logo */
   width: auto;
   margin-top: 2rem;      /* space between subtitle and logo */
   vertical-align: middle;
@@ -138,7 +149,7 @@
   background-color: transparent !important;
 }
 .cr-section.sidebar-left {
-  background-color: #d9d9d9;         /* dark green */
+  background-color: #ffffff;         /* dark green */
 }
 
 .sidebar-left section.narrative.trigger {
@@ -157,12 +168,33 @@
   margin-bottom: 0.25rem !important;
 }
 
-.rangeland-stats strong {
-  display: block;
-  font-size: 1.6rem;
+.rangeland-nepal .narrative h2,
+.rangeland-nepal .narrative h3 {
+  font-family: "Be Vietnam Pro", sans-serif;
+  font-size: 2rem !important;
   font-weight: 700;
-  color: #2a4034;
-  line-height: 1;
+  color: #000000 !important;
+}
+
+.rangeland-nepal .narrative {
+  font-family: "Be Vietnam Pro", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.rangeland-nepal .rangeland-stats {
+  font-family: "Be Vietnam Pro", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.rangeland-nepal .rangeland-stats strong {
+  display: block;
+  font-family: "Be Vietnam Pro", sans-serif;
+  font-size: 2.75rem;
+  font-weight: 500;
+  color: #2780e3;
+  line-height: 1.1;
   margin-bottom: 0 !important;   /* was 0.25rem */
 }
 
@@ -180,14 +212,6 @@
 
 .rangeland-stats p {
   margin: 0 !important;
-}
-
-.rangeland-stats strong {
-  display: block;
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: #2a4034;
-  line-height: 1.1;
 }
 
 /* Enable mouse events and interaction across all Leaflet map containers */
