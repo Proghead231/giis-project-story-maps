@@ -30,6 +30,7 @@ format:
 ::: {.cr-section layout="sidebar-left" .rangeland-nepal}
 
 ## Rangelands in Nepal
+Rangelands provide a wide range of ecosystem services including forage, water, carbon storage, biodiversity habitat, and cultural value. @cr-services
 
 [Nepal's rangelands span the high-altitude Trans-Himalayan belt down to the mid-hills, covering critical ecological and pastoral gradients.]{.map-step data-view="nat"} Nationally, they support extensive livestock production and wildlife corridors.<span class="rangeland-stats"><strong>2.1 M ha</strong>Total rangeland area<br><br><strong>14%</strong>of Nepal<br><br></span> @cr-map
 
@@ -38,6 +39,21 @@ format:
 
 ### Field Surveyed Rangelands
 [We conducted field surveys across various rangeland sites in Nepal,]{.map-step data-view="field"} focusing on vegetation composition, soil health, and grazing patterns. These surveys provide ground-truth data to validate remote sensing analyses. @cr-map
+
+:::{#cr-services .services}
+::: {.svc-group .svc-material}
+[Material]{.svc-title}
+[Materials]{.chip} [Medicinal species]{.chip} [Food & feed]{.chip} [Energy source]{.chip}
+:::
+::: {.svc-group .svc-nonmaterial}
+[Non-material]{.svc-title}
+[Learning]{.chip} [Culture & identity]{.chip} [Experience]{.chip}
+:::
+::: {.svc-group .svc-regulating}
+[Regulating]{.svc-title}
+[Habitats]{.chip} [Water regulation]{.chip} [Pollination]{.chip} [Sequestration]{.chip} [Soil formation]{.chip}
+:::
+:::
 
 :::{#cr-map}
 ```{python}
@@ -69,5 +85,16 @@ maps.make_map()
     document.querySelectorAll(".map-step").forEach(function (el) { io.observe(el); });
   });
 })();
+
+window.addEventListener("load", function () {
+  var el = document.getElementById("cr-services");
+  if (!el) return;
+  var holder = el.closest(".sticky") || el;
+  setInterval(function () {
+    var active = holder.classList.contains("cr-active") ||
+                 parseFloat(getComputedStyle(holder).opacity) > 0.5;
+    el.classList.toggle("in", active);
+  }, 200);
+});
 </script>
 ```

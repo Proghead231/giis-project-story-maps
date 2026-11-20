@@ -233,7 +233,70 @@
 }
 .chart-overlay img { width: 100%; height: 100%; object-fit: contain; }
 
+.services {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin: 0.75rem 0;
+}
 
+.svc-group {
+  --c: #2a4034;
+  border-left: 5px solid var(--c);
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  opacity: 0;
+  transform: translateX(-16px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.svc-group p { margin: 0 !important; }
+
+.svc-material    { --c: #7a9a2e; }
+.svc-nonmaterial { --c: #8e5ea2; }
+.svc-regulating  { --c: #2e86ab; }
+
+.svc-title {
+  display: block;
+  font-weight: 700;
+  color: var(--c);
+  margin-bottom: 0.35rem;
+}
+
+.chip {
+  display: inline-block;
+  margin: 0 0.25rem 0.3rem 0;
+  padding: 0.15rem 0.6rem;
+  font-size: 0.95rem;
+  color: #fff;
+  background: var(--c);
+  border-radius: 999px;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* reveal: groups one after another, chips staggered inside each */
+.services.in .svc-group { opacity: 1; transform: none; }
+.services.in .svc-group:nth-child(1) { transition-delay: 0s; }
+.services.in .svc-group:nth-child(2) { transition-delay: 0.6s; }
+.services.in .svc-group:nth-child(3) { transition-delay: 1.2s; }
+
+.services.in .chip { opacity: 1; transform: none; }
+.services.in .svc-group:nth-child(1) .chip:nth-of-type(1) { transition-delay: 0.3s; }
+.services.in .svc-group:nth-child(1) .chip:nth-of-type(2) { transition-delay: 0.45s; }
+.services.in .svc-group:nth-child(1) .chip:nth-of-type(3) { transition-delay: 0.6s; }
+.services.in .svc-group:nth-child(1) .chip:nth-of-type(4) { transition-delay: 0.75s; }
+
+.services.in .svc-group:nth-child(2) .chip:nth-of-type(1) { transition-delay: 0.9s; }
+.services.in .svc-group:nth-child(2) .chip:nth-of-type(2) { transition-delay: 1.05s; }
+.services.in .svc-group:nth-child(2) .chip:nth-of-type(3) { transition-delay: 1.2s; }
+
+.services.in .svc-group:nth-child(3) .chip:nth-of-type(1) { transition-delay: 1.5s; }
+.services.in .svc-group:nth-child(3) .chip:nth-of-type(2) { transition-delay: 1.65s; }
+.services.in .svc-group:nth-child(3) .chip:nth-of-type(3) { transition-delay: 1.8s; }
+.services.in .svc-group:nth-child(3) .chip:nth-of-type(4) { transition-delay: 1.95s; }
+.services.in .svc-group:nth-child(3) .chip:nth-of-type(5) { transition-delay: 2.1s; }
 /* Whole screen map adjustments (commented out for now, but can be enabled if needed) */
 /* Force the map and all its Quarto/Leaflet container wrappers to fill 100vw x 100vh */
 /* #cr-map,
