@@ -3,3 +3,4 @@
 **/*.quarto_ipynb
 .env
 projects/nepal-rangelands/test1.ipynb
+_site/
