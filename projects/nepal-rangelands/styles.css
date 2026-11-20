@@ -202,6 +202,10 @@
   pointer-events: auto !important;
 }
 
+.cr-section .sticky {
+  transition: opacity 0.8s ease !important;
+}
+
 /* Ensure the active sticky element explicitly captures all mouse and touch interactions */
 .cr-section .sticky.cr-active {
   pointer-events: auto !important;
@@ -286,6 +290,40 @@
 .services.in .svc-group:nth-child(3) .chip:nth-of-type(3) { transition-delay: 1.8s; }
 .services.in .svc-group:nth-child(3) .chip:nth-of-type(4) { transition-delay: 1.95s; }
 .services.in .svc-group:nth-child(3) .chip:nth-of-type(5) { transition-delay: 2.1s; }
+
+/* services panel: same footprint as the map */
+#cr-services {
+  width: 98% !important;
+  height: 75vh !important;
+  margin: 0 !important;
+  padding: 1rem 1.25rem !important;
+  border-radius: 8px;
+  box-sizing: border-box;
+  background: #ffffff;
+  justify-content: center;
+  gap: 1rem;
+}
+.cr-section.sidebar-left #cr-services {
+  margin-top: 2rem !important;
+  height: calc(75vh - 2rem) !important;
+}
+#cr-services .svc-group { padding: 0.9rem 1.1rem; }
+#cr-services .svc-title { font-size: 1.4rem; margin-bottom: 0.6rem; }
+#cr-services .chip { font-size: 1.1rem; padding: 0.25rem 0.8rem; }
+
+/* hidden stickies must not catch the mouse (must come after the pointer-events: auto rules) */
+.cr-section .sticky:not(.cr-active),
+.cr-section .sticky:not(.cr-active) * {
+  pointer-events: none !important;
+}
+
+/* iframe fills the map box */
+[id*="cr-map"] iframe {
+  width: 100% !important;
+  height: 100% !important;
+  border: none;
+}
+
 /* Whole screen map adjustments (commented out for now, but can be enabled if needed) */
 /* Force the map and all its Quarto/Leaflet container wrappers to fill 100vw x 100vh */
 /* #cr-map,

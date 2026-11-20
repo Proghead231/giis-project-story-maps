@@ -2,7 +2,7 @@
 title: "Rangelands in Change"
 subtitle: "Vegetation trends, pastoral livelihoods and pathways for management​ in Nepal"
 date: "2026-11-17"
-categories: [Rangelands, Remote Sensing, Karnali]
+categories: [Rangelands]
 image: images/cover.png
 format:
   closeread-html:
@@ -32,7 +32,8 @@ format:
 ## Rangelands in Nepal
 Rangelands provide a wide range of ecosystem services including forage, water, carbon storage, biodiversity habitat, and cultural value. @cr-services
 
-[Nepal's rangelands span the high-altitude Trans-Himalayan belt down to the mid-hills, covering critical ecological and pastoral gradients.]{.map-step data-view="nat"} Nationally, they support extensive livestock production and wildlife corridors.<span class="rangeland-stats"><strong>2.1 M ha</strong>Total rangeland area<br><br><strong>14%</strong>of Nepal<br><br></span> @cr-map
+[Nepal's rangelands span the high-altitude Trans-Himalayan belt down to the mid-hills, covering critical ecological and pastoral gradients.]{.map-step data-view="nat"} Nationally, they support extensive livestock production and wildlife corridors.
+<span class="rangeland-stats"><strong>2.1 M ha</strong>Total rangeland area<br><br><strong>14%</strong>of Nepal<br><br></span> @cr-map
 
 ### Provincial Dynamics: Karnali Province
 [Karnali Province, the largest province in Nepal, is home to diverse rangeland ecosystems.]{.map-step data-view="karnali"} These areas are vital for local livelihoods, supporting pastoral communities and serving as habitats for endemic species. @cr-map
@@ -61,7 +62,6 @@ import scripts.maps as maps
 maps.make_map()
 ```
 :::
-
 :::
 
 ```{=html}
@@ -89,12 +89,12 @@ maps.make_map()
 window.addEventListener("load", function () {
   var el = document.getElementById("cr-services");
   if (!el) return;
-  var holder = el.closest(".sticky") || el;
-  setInterval(function () {
-    var active = holder.classList.contains("cr-active") ||
-                 parseFloat(getComputedStyle(holder).opacity) > 0.5;
-    el.classList.toggle("in", active);
-  }, 200);
+  function sync() {
+    var want = el.classList.contains("cr-active");
+    if (want !== el.classList.contains("in")) el.classList.toggle("in", want);
+  }
+  new MutationObserver(sync).observe(el, { attributes: true, attributeFilter: ["class"] });
+  sync();
 });
 </script>
 ```
