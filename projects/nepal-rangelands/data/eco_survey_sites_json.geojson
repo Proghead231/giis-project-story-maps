@@ -1,1 +1,155 @@
-{"type":"FeatureCollection","features":[{"type":"Feature","id":0,"geometry":{"type":"Point","coordinates":[82.787590001000069,28.883909999000025]},"properties":{"FID":0,"name":"Rup Patan","x":0,"y":0,"pasture":" Rup Patan","MERGE_SRC":"rup_patan"}},{"type":"Feature","id":1,"geometry":{"type":"Point","coordinates":[82.519730000000038,29.169920000000047]},"properties":{"FID":1,"name":" ","x":82.519729999999996,"y":29.169920000000001,"pasture":"Ghata Patan","MERGE_SRC":"ecological_survey_sites"}},{"type":"Feature","id":2,"geometry":{"type":"Point","coordinates":[82.249120000000062,29.180430000000058]},"properties":{"FID":2,"name":" ","x":82.249120000000005,"y":29.180430000000001,"pasture":"Haka Patan","MERGE_SRC":"ecological_survey_sites"}},{"type":"Feature","id":3,"geometry":{"type":"Point","coordinates":[82.304800000000057,29.204100000000039]},"properties":{"FID":3,"name":" ","x":82.3048,"y":29.2041,"pasture":"Thulo Guthichaur","MERGE_SRC":"ecological_survey_sites"}}]}
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": 0,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.78759000100007,
+          28.883909999000025
+        ]
+      },
+      "properties": {
+        "FID": 0,
+        "pasture": "Rup Patan"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 1,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.51973000000004,
+          29.169920000000047
+        ]
+      },
+      "properties": {
+        "FID": 1,
+        "pasture": "Ghata Patan"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.24912000000006,
+          29.180430000000058
+        ]
+      },
+      "properties": {
+        "FID": 2,
+        "pasture": "Haka Patan"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 3,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.30480000000006,
+          29.20410000000004
+        ]
+      },
+      "properties": {
+        "FID": 3,
+        "pasture": "Thulo Guthichaur"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 4,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.40192,
+          29.27015
+        ]
+      },
+      "properties": {
+        "FID": 4,
+        "pasture": "Khirre Patan"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 5,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.39209,
+          29.36626
+        ]
+      },
+      "properties": {
+        "FID": 5,
+        "pasture": "Dargari Patan"
+      }
+    },
+        {
+      "type": "Feature",
+      "id": 6,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.159318,
+          29.358595
+        ]
+      },
+      "properties": {
+        "FID": 5,
+        "pasture": "Khali Patan"
+      }
+    },
+            {
+      "type": "Feature",
+      "id": 7,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.398914,
+          29.307263
+        ]
+      },
+      "properties": {
+        "FID": 6,
+        "pasture": "Bhaisi Goth"
+      }
+    },
+                {
+      "type": "Feature",
+      "id": 8,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.39987,
+          29.270872
+        ]
+      },
+      "properties": {
+        "FID": 5,
+        "pasture": "Dudhe Patan"
+      }
+    },
+                    {
+      "type": "Feature",
+      "id": 9,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          82.189323,
+          29.333983
+        ]
+      },
+      "properties": {
+        "FID": 5,
+        "pasture": "Salimkot"
+      }
+    }
+  ]
+}

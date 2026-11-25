@@ -14,7 +14,7 @@ format:
       narrative-font-size: "1.15rem"
     css: styles.css
 ---
-
+  
 :::{.cr-section .hero-section layout="overlay-center"}
 
 **Rangelands in Change**\
@@ -29,24 +29,10 @@ format:
 
 ::: {.cr-section layout="sidebar-left" .rangeland-nepal}
 
-## Rangelands in Nepal
-Rangelands provide a wide range of ecosystem services including forage, water, carbon storage, biodiversity habitat, and cultural value. @cr-services
-
-![Yarsagumba (top left), Wool (top right), Churpi (bottom left), Woman milking a Yak (bottom right)](images/rangeland_services3.png)
-
-[Nepal's rangelands span the high-altitude Trans-Himalayan belt down to the mid-hills, covering critical ecological and pastoral gradients.]{.map-step data-view="nat"} Nationally, they support extensive livestock production and wildlife corridors.
-<span class="rangeland-stats"><strong>2.1 M ha</strong>Total rangeland area<br><br><strong>14%</strong>of Nepal<br><br></span> @cr-map
-
-### Provincial Dynamics: Karnali Province
-[Karnali Province, the largest province in Nepal, is home to diverse rangeland ecosystems.]{.map-step data-view="karnali"} These areas are vital for local livelihoods, supporting pastoral communities and serving as habitats for endemic species. @cr-map
-
-### Field Surveyed Rangelands
-[We conducted field surveys across various rangeland sites in Nepal,]{.map-step data-view="field"} focusing on vegetation composition, soil health, and grazing patterns. These surveys provide ground-truth data to validate remote sensing analyses. @cr-map
-
 :::{#cr-services .services}
 ::: {.svc-group .svc-material}
 [Material]{.svc-title}
-[Materials]{.chip} [Medicinal species]{.chip} [Food & feed]{.chip} [Energy source]{.chip}
+[Materials]{.chip} [Medicinal species]{.chip} [Food & feed]{.chip} [Energy source]{.chip} 
 :::
 ::: {.svc-group .svc-nonmaterial}
 [Non-material]{.svc-title}
@@ -58,12 +44,57 @@ Rangelands provide a wide range of ecosystem services including forage, water, c
 :::
 :::
 
+:::{#cr-photo-placeholder}
+![Optional image caption](images/placeholder_image.svg)
+:::
+
+:::{#cr-photo-climateChange}
+![Temperature trend — Mean: +0.03 °C/yr | Max: +0.02 °C/yr | Min: +0.04 °C/yr. Precipitation trend: +8.7 mm/yr](images/climate_change.png)
+:::
+ 
+:::{#cr-photo-dryingLake}
+![Lake drying](images/drying_lake.png)
+:::
+
 :::{#cr-map}
 ```{python}
+import importlib
 import scripts.maps as maps
+ 
+importlib.reload(maps)
 maps.make_map()
-```
+``` 
 :::
+ 
+Rangelands are diverse in their vegetation driven by highly fluctuating rainfall, temperature and other climate phenomena, and influenced by soils and management practices. They cover about 54% of global terrestrial surface (148,326,000 km2) to a total of 79,509,421 km2. @cr-photo-placeholder
+ 
+Rangelands provide a wide range of ecosystem services including forage, water, carbon storage, biodiversity habitat, and cultural value. @cr-services
+
+![Yarsagumba (top left), Wool (top right), Churpi (bottom left), Woman milking a Yak (bottom right)](images/rangeland_services3.png) 
+
+### Distribution
+[Nepal's rangelands span the high-altitude Trans-Himalayan belt down to the mid-hills, covering critical ecological and pastoral gradients.]{.map-step data-view="nat"} @cr-map Nationally, they support extensive livestock production and wildlife corridors. <span class="rangeland-stats"><strong>2.1 M ha</strong>Total rangeland area<br><br><strong>14%</strong>of Nepal<br><br></span>
+
+[Climate Change]{.cr-title}
+Content. @cr-photo-climateChange
+
+Content. @cr-photo-dryingLake
+  
+### The Karnali Province
+[Karnali Province, the largest province in Nepal, is home to diverse rangeland ecosystems.]{.map-step data-view="karnali"} These areas are vital for local livelihoods, supporting pastoral communities and serving as habitats for endemic species. @cr-map
+
+### Our Ecological Survey and Restoration Sites Rangelands
+[We conducted field surveys across various rangeland sites of Jumla and Dolpa districts in Karnali,]{.map-step data-view="field"} focusing on vegetation composition, soil health, grazing patterns. Furthermore we did couple of rangeland restoration projects. @cr-map
+
+### Restoration Work 
+[We did restoration ...]{.map-step data-view="restoration"} Some Photos/plots. @cr-map
+
+[Thulo Guthichaur]{.cr-title}
+[Content...]{.map-step data-view="thuloguthi"}. @cr-map
+
+[Patrasi]{.cr-title}
+[Content...]{.map-step data-view="patrasi"}. @cr-map
+
 :::
 
 ```{=html}

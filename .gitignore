@@ -3,4 +3,6 @@
 **/*.quarto_ipynb
 .env
 projects/nepal-rangelands/test1.ipynb
-_site/
+/_site
+projects/nepal-rangelands/scripts/__pycache__/
+projects/nepal-rangelands/test.ipynb

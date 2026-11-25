@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;700&display=swap');
 
+.sidebar-left .cr-title {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
 .cr-section:not(.sidebar-left) .sticky-col {
   background-color: #ffffff !important;
 }
@@ -109,6 +116,39 @@
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
   /* keeps white text readable */
 }
+[id^="cr-photo"] {
+  width: 98% !important;
+  min-height: 0;
+  padding: 0 !important;
+  height: 75vh !important;
+  margin: 0 !important;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+[id^="cr-photo"] p,
+[id^="cr-photo"] figure {
+  margin: 0 !important;
+  height: auto;
+}
+
+[id^="cr-photo"] img {
+  display: block;
+  width: auto !important;
+  height: auto !important;
+  max-width: 100% !important;
+  max-height: calc(75vh - 1rem); /*!important;  box height minus top margin and caption room */
+  margin: 0 auto;
+  object-fit: fill;
+}
+
+[id^="cr-photo"] figcaption {
+  font-size: 0.8rem;
+  line-height: 1.25;
+  padding-top: 0.25rem;
+  text-align: center;
+  width: 100%;
+}
 
 /* Wrapper owns width + height */
 [id*="cr-map"] {
@@ -140,10 +180,6 @@
   overflow: hidden !important;
 }
 
-.cr-section.sidebar-left [id*="cr-map"] {
-  margin-top: 4rem !important;
-  height: calc(75vh - 2rem) !important;
-}
 
 .cr-section.sidebar-left .sticky-col {
   background-color: transparent !important;
@@ -177,12 +213,6 @@
 }
 
 .rangeland-nepal .narrative {
-  font-family: "Be Vietnam Pro", sans-serif;
-  font-size: 1rem;
-  font-weight: 400;
-}
-
-.rangeland-nepal .rangeland-stats {
   font-family: "Be Vietnam Pro", sans-serif;
   font-size: 1rem;
   font-weight: 400;
@@ -248,7 +278,6 @@
   z-index: 500;
   pointer-events: auto;
 }
-.chart-overlay img { width: 100%; height: 100%; object-fit: contain; }
 
 .services {
   display: flex;
@@ -327,10 +356,7 @@
   justify-content: center;
   gap: 1rem;
 }
-.cr-section.sidebar-left #cr-services {
-  margin-top: 2rem !important;
-  height: calc(75vh - 2rem) !important;
-}
+
 #cr-services .svc-group { padding: 0.9rem 1.1rem; }
 #cr-services .svc-title { font-size: 1.4rem; margin-bottom: 0.6rem; }
 #cr-services .chip { font-size: 1.1rem; padding: 0.25rem 0.8rem; }
@@ -346,6 +372,29 @@
   width: 100% !important;
   height: 100% !important;
   border: none;
+}
+
+.cr-section.sidebar-left #cr-services,
+.cr-section.sidebar-left [id*="cr-map"],
+.cr-section.sidebar-left [id^="cr-photo"] {
+  height: 75vh !important;
+  margin: 12.5vh auto 0 auto !important;   /* (100vh - 75vh) / 2 on top, centered horizontally */
+}
+
+[id^="cr-photo"] {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;   /* vertical */
+  align-items: center;       /* horizontal */
+}
+
+[id^="cr-photo"] figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content !important;
+  max-width: 100%;
+  margin: 0 auto !important;
 }
 
 /* Whole screen map adjustments (commented out for now, but can be enabled if needed) */
