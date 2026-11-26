@@ -867,6 +867,98 @@ TIF bounds: BoundingBox(left=60.0, bottom=0.0, right=88.234900795, top=30.630996
 TIF res:   (0.013998463458106099, 0.013999541484917733)</code></pre>
 </div>
 </div>
+<div id="fb2d4e04" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"land_class"</span>: [</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Total Agricultural Land"</span>,</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Permanent meadows &amp; pastures"</span>,</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Total Cropland"</span>,</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Temporary crops"</span>,</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Permanent crops"</span>,</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Forest Land"</span>,</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Other Land"</span>,</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"area_2022_mha"</span>: <span class="bu">list</span>((<span class="dv">4781</span>, <span class="dv">3208</span>, <span class="dv">1573</span>, <span class="dv">1085</span>, <span class="dv">190</span>, <span class="dv">4050</span>, <span class="dv">4150</span>)),</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"change_2001_2022_mha"</span>: [<span class="va">None</span>, <span class="op">-</span><span class="dv">170</span>, <span class="dv">80</span>, <span class="dv">110</span>, <span class="dv">55</span>, <span class="va">None</span>, <span class="va">None</span>],</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"change_2001_2022_pct"</span>: [<span class="va">None</span>, <span class="op">-</span><span class="fl">6.0</span>, <span class="fl">5.0</span>, <span class="fl">10.0</span>, <span class="fl">40.0</span>, <span class="va">None</span>, <span class="va">None</span>],</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="51ac6a06" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">land_class</th>
+<th data-quarto-table-cell-role="th">area_2022_mha</th>
+<th data-quarto-table-cell-role="th">change_2001_2022_mha</th>
+<th data-quarto-table-cell-role="th">change_2001_2022_pct</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>Total Agricultural Land</td>
+<td>4781</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>Permanent meadows &amp; pastures</td>
+<td>3208</td>
+<td>-170.0</td>
+<td>-6.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>Total Cropland</td>
+<td>1573</td>
+<td>80.0</td>
+<td>5.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>Temporary crops</td>
+<td>1085</td>
+<td>110.0</td>
+<td>10.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>Permanent crops</td>
+<td>190</td>
+<td>55.0</td>
+<td>40.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">5</th>
+<td>Forest Land</td>
+<td>4050</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">6</th>
+<td>Other Land</td>
+<td>4150</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
 
 
 
