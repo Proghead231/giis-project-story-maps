@@ -16,6 +16,7 @@ provinces = gpd.read_file("data/province_bounds_json.geojson")
 districts = gpd.read_file("data/districts.geojson")
 districts = districts[districts["DISTRICT"].isin(["JUMLA", "DOLPA"])]
 field_sites = gpd.read_file("data/eco_survey_sites_json.geojson")
+dolpa_mapped_muni = gpd.read_file("data/dolpa_mapped_municipalities.geojson")
 
 VIEWS = {
     "nat":     {"lat": 28.165295,  "lon": 84.470657, "zoom": 7},
@@ -24,6 +25,7 @@ VIEWS = {
     "restoration":   {"lat": 29.2975564, "lon": 82.2855706, "zoom": 10},
     "thuloguthi": {"lat": 29.20410000000004, "lon": 82.30480000000006, "zoom": 15},
     "patrasi": {"lat": 29.3300433, "lon": 82.3067474, "zoom": 11},
+    "mapped_rangeland": {"lat": 29.2058908, "lon": 82.6381917, "zoom": 9}
 }
 
 
@@ -183,6 +185,23 @@ def make_map():
                                 "fillOpacity": 0.0},
     ).add_to(district_group)
 
+    mapped_rangeland_group = folium.FeatureGroup(name="Rangeland Mapped", show=False)
+    folium.GeoJson(
+        districts[districts["DISTRICT"].isin(["JUMLA"])][["DISTRICT", "geometry"]].__geo_interface__,
+        style_function=lambda f: {"color": "#ff0055", "weight": 2.5, "fillOpacity": 0.7}
+    ).add_to(mapped_rangeland_group)
+
+    folium.GeoJson(
+        districts[districts["DISTRICT"].isin(["DOLPA"])][["DISTRICT", "geometry"]].__geo_interface__,
+        style_function=lambda f: {"color": "#ff0055", "weight": 2.5, "fillOpacity": 0}
+    ).add_to(mapped_rangeland_group)
+
+    folium.GeoJson(
+        dolpa_mapped_muni[["GaPa_NaPa", "geometry"]].__geo_interface__,
+        style_function=lambda f: {"color": "#ff0055", "weight": 2.5, "fillOpacity": 0.7}
+    ).add_to(mapped_rangeland_group)
+
+
     field_group = build_field_group("Field Survey Sites")
     restoration_group = build_field_group("All restoration sites",
                                          keep=["Thulo Guthichaur", "Salimkot", "Dudhe Patan", "Bhaisi Goth"])
@@ -207,18 +226,20 @@ def make_map():
     restoration_group.add_to(m)
     thuloguthi_group.add_to(m)
     patrasi_group.add_to(m)
+    mapped_rangeland_group.add_to(m)
 
     GROUPS = {"provinces": province_group, "districts": district_group,
           "field": field_group, "restoration": restoration_group, "thuloguthi": thuloguthi_group, "patrasi":patrasi_group,
-          "terrain": terrain, "satellite": satellite, "labels": labels, "rangeland":rangeland_overlay}
+          "terrain": terrain, "satellite": satellite, "labels": labels, "rangeland":rangeland_overlay, "mapped_rangeland":mapped_rangeland_group}
     # which layers are visible in each view
     VIEW_LAYERS = {
         "nat":         ["terrain", "labels", "rangeland",  "provinces"],
         "karnali":     ["terrain", "labels", "rangeland", "provinces", "districts"],
         "field":       ["terrain", "labels", "rangeland", "provinces", "districts", "field"],
-        "restoration": ["satellite", "provinces", "districts", "restoration"],
-        "thuloguthi": ["satellite", "provinces", "districts", "thuloguthi"],
-        "patrasi": ["satellite", "provinces", "districts", "patrasi"]
+        "mapped_rangeland": ["terrain", "districts", "mapped_rangeland", "rangeland"],
+        "restoration": ["satellite", "districts", "restoration"],
+        "thuloguthi": ["satellite", "districts", "thuloguthi"],
+        "patrasi": ["satellite", "districts", "patrasi"]
     }
 
     m.add_child(ViewController(VIEWS, GROUPS, VIEW_LAYERS))

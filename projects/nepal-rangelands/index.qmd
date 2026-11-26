@@ -77,14 +77,18 @@ Rangelands provide a wide range of ecosystem services including forage, water, c
 
 [Climate Change]{.cr-title}
 Content. @cr-photo-climateChange
-
+ 
 Content. @cr-photo-dryingLake
   
 ### The Karnali Province
-[Karnali Province, the largest province in Nepal, is home to diverse rangeland ecosystems.]{.map-step data-view="karnali"} These areas are vital for local livelihoods, supporting pastoral communities and serving as habitats for endemic species. @cr-map
+[Karnali Province, the largest province in Nepal, is home to diverse rangeland ecosystems.]{.map-step data-view="karnali"} These areas are vital for local livelihoods, supporting pastoral communities and serving as habitats for endemic species. @cr-map 
+
+### Mapping Rangelands
+[We used participatory mapping approach to map all the rangelands in Jumla district and 4 municipalities in the Dolpa district.]{.map-step data-view="mapped_rangeland"} @cr-map
 
 ### Our Ecological Survey and Restoration Sites Rangelands
 [We conducted field surveys across various rangeland sites of Jumla and Dolpa districts in Karnali,]{.map-step data-view="field"} focusing on vegetation composition, soil health, grazing patterns. Furthermore we did couple of rangeland restoration projects. @cr-map
+
 
 ### Restoration Work 
 [We did restoration ...]{.map-step data-view="restoration"} Some Photos/plots. @cr-map
