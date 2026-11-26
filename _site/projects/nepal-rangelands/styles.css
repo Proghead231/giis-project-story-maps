@@ -1,17 +1,62 @@
-@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;700&display=swap');
+/* ==========================================================================
+   RANGELANDS IN CHANGE: styles.css
+   --------------------------------------------------------------------------
+   CONTENTS
+     0. Fonts & design tokens (colours, sizes, spacing)  <- tweak the look here
+     1. Hero section (layout="overlay-center")
+     2. Sidebar layout: page background & narrative cards
+     3. Sidebar layout: typography (headings, titles, stats, links)
+     4. Sticky panels: shared box, centering, fading, mouse handling
+     5. Sticky: map            (#cr-map)
+     6. Sticky: photos         (#cr-photo-...)
+     7. Sticky: services panel (#cr-services) + animation
+     8. Small screens
+     9. Legacy / unused (safe to delete)
+   ========================================================================== */
 
-.sidebar-left .cr-title {
-  display: block;
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: 0.25rem;
+
+/* ==========================================================================
+   0. FONTS & DESIGN TOKENS
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --font:        "Be Vietnam Pro", sans-serif;
+
+  /* colours */
+  --accent:      #2780e3;   /* card edge, stats numbers, links */
+  --page-bg:     #ffffff;   /* background behind the cards */
+  --card-bg:     #ffffff;
+  --text:        #1f2421;
+  --heading:     #111111;
+
+  /* sizes */
+  --body-size:   1.3rem;    /* narrative text */
+  --h-size:      2.2rem;    /* headings and [Title]{.cr-title} */
+  --stat-size:   3.25rem;   /* big numbers in .rangeland-stats */
+
+  /* spacing */
+  --card-gap:    4vh;      /* space between narrative cards (also changes
+                               when each map/photo trigger fires) */
+
+  /* sticky box (map, photos, services) */
+  --box-width:   85%;
+  --box-height:  75vh;
+  --box-top:     12.5vh;    /* (100vh - box height) / 2 = vertically centred */
 }
 
+
+/* ==========================================================================
+   1. HERO SECTION  (.hero-section, overlay-center layout)
+   ========================================================================== */
+
+/* hero uses a white sticky background wherever the layout is not sidebar */
 .cr-section:not(.sidebar-left) .sticky-col {
   background-color: #ffffff !important;
 }
 
-/* Make ANY sticky background with .full-bg fill the screen cleanly */
+/* full-screen background image / sticky */
 .full-bg,
 .full-bg p {
   width: 100% !important;
@@ -27,142 +72,223 @@
   object-position: center;
 }
 
-/* Hero section title */
+/* title */
 .hero-section strong {
   display: block;
   position: relative;
   top: 25px;
-  font-family: "Be Vietnam Pro", sans-serif;
+  font-family: var(--font);
   font-weight: 500;
   font-size: 4rem !important;
   line-height: 1.1 !important;
-  margin-bottom: 0.7rem; 
+  margin-bottom: 0.7rem;
 }
 
-/* Hero subtitle */
+/* subtitle */
 .hero-section em {
   display: block;
-  font-family: "Be Vietnam Pro", sans-serif;
+  font-family: var(--font);
   font-weight: 10;
   font-style: normal;
   font-size: 1.2rem !important;
   line-height: 1.4 !important;
 }
 
-/* Widen the overlay box so the large title fits nicely */
+/* widen the overlay box so the large title fits */
 .hero-section .narrative-col {
   width: 90% !important;
   max-width: 900px !important;
   text-align: center;
 }
 
-/* Remove the dark overlay box for the hero section */
+/* no dark box; shadow keeps white text readable on bright images */
 .hero-section .narrative {
   background-color: transparent !important;
   box-shadow: none !important;
-  /* Optional: Adds a subtle shadow so white text stays readable over bright parts of the image */
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
 }
 
+/* logo under the subtitle */
 .hero-section .hero-logo {
   display: inline-block;
   background-color: rgba(255, 255, 255, 0.705);
-  max-height: 63px;        /* reduced by about 10% */
-  padding: 6px;            /* white backing around the logo */
+  max-height: 63px;
+  padding: 6px;
   width: auto;
-  margin-top: 2rem;      /* space between subtitle and logo */
+  margin-top: 2rem;
   vertical-align: middle;
 }
 
-.cr-section.section-white {
-  position: relative;
+
+/* ==========================================================================
+   2. SIDEBAR LAYOUT: PAGE & NARRATIVE CARDS
+      Applies to every .cr-section with layout="sidebar-left"
+   ========================================================================== */
+
+/* page background (cards stand out against it) */
+.cr-section.sidebar-left {
+  background-color: var(--page-bg);
 }
 
-/* White / Light card for section-white */
-.section-white .narrative {
-  background-color: rgba(255, 255, 255, 0.848) !important;
-  /* Whiter, semi-translucent background */
-  color: #1f2421 !important;
-  /* Dark text for contrast */
-  backdrop-filter: blur(8px);
-  /* Optional frosted glass effect */
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
-  /* Soft shadow to separate from the image */
-}
-
-/* Position the section title on the left side */
-.section-white .section-title-left {
-  position: absolute;
-  left: 6rem;
-  top: 50%;
-  transform: translateY(-50%);
-  margin: 0;
-  z-index: 2;
-
-  /* your new styles */
-  background: none !important;
-  /* remove any inherited background */
+/* the right-hand column holding the sticky panels stays transparent */
+.cr-section.sidebar-left .sticky-col {
   background-color: transparent !important;
-  box-shadow: none !important;
-  /* remove any inherited shadow */
-  padding: 0 !important;
-  /* strip inherited padding */
-  border: none !important;
-  color: #ffffff !important;
-  font-size: 3rem !important;
-  /* increase — adjust to taste */
+}
+
+/* each narrative block is a card */
+.cr-section.sidebar-left .narrative {
+  font-family: var(--font);
+  font-size: var(--body-size);
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--text);
+  background-color: var(--card-bg) !important;
+  padding: 1.5rem 1.75rem !important;
+  border-radius: 10px;
+  border-left: 5px solid var(--accent);
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.08);
+  min-height: auto !important;
+  margin: 0 0 var(--card-gap) 0 !important;
+}
+
+/* space after the final card in a section */
+.cr-section.sidebar-left .narrative:last-of-type {
+  margin-bottom: 4rem !important;
+}
+
+/* paragraph spacing inside a card */
+.cr-section.sidebar-left .narrative p {
+  margin: 0 0 0.8rem 0;
+}
+.cr-section.sidebar-left .narrative p:last-child {
+  margin-bottom: 0;
+}
+
+/* images placed directly in the narrative text */
+.cr-section.sidebar-left .narrative img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+
+/* ==========================================================================
+   3. SIDEBAR LAYOUT: TYPOGRAPHY
+   ========================================================================== */
+
+/* headings (###) */
+.cr-section.sidebar-left .narrative h2,
+.cr-section.sidebar-left .narrative h3 {
+  font-family: var(--font);
+  font-size: var(--h-size) !important;
   font-weight: 700;
   line-height: 1.15;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
-  /* keeps white text readable */
+  color: var(--heading) !important;
+  margin: 0 0 0.75rem 0 !important;
 }
-[id^="cr-photo"] {
-  width: 98% !important;
-  min-height: 0;
-  padding: 0 !important;
-  height: 75vh !important;
+
+/* [Title]{.cr-title}: use instead of ### for blocks Closeread mishandles */
+.cr-section.sidebar-left .cr-title {
+  display: block;
+  font-size: var(--h-size);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--heading);
+  margin-bottom: 0.75rem;
+}
+
+/* links inside cards */
+.cr-section.sidebar-left .narrative a {
+  color: var(--accent);
+}
+
+/* big-number stats block (<span class="rangeland-stats">) */
+.rangeland-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin-top: 0.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+  font-size: 1.1rem;
+  line-height: 1.35;
+  color: var(--text);
+}
+
+.rangeland-stats p {
   margin: 0 !important;
+}
+
+.cr-section.sidebar-left .rangeland-stats strong {
+  display: block;
+  font-family: var(--font);
+  font-size: var(--stat-size);
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--accent);
+  margin-bottom: 0 !important;
+}
+
+
+/* ==========================================================================
+   4. STICKY PANELS: SHARED BEHAVIOUR
+   ========================================================================== */
+
+/* smooth cross-fade when Closeread swaps one sticky for another */
+.cr-section .sticky {
+  transition: opacity 0.8s ease !important;
+}
+
+/* ---- mouse handling (order matters: keep these three rules together) ---- */
+
+/* 1. let maps and active panels receive mouse / touch events */
+.sticky-col .sticky,
+.sticky-col .cell,
+.sticky-col .cell-output,
+.sticky-col .cell-output-display,
+[id*="cr-map"],
+.leaflet-container,
+.leaflet-pane,
+.leaflet-control-container {
+  pointer-events: auto !important;
+}
+
+/* 2. the active sticky sits above the others */
+.cr-section .sticky.cr-active {
+  pointer-events: auto !important;
+  z-index: 10 !important;
+}
+
+/* 3. hidden stickies never catch the mouse (must come after rule 1) */
+.cr-section .sticky:not(.cr-active),
+.cr-section .sticky:not(.cr-active) * {
+  pointer-events: none !important;
+}
+
+/* ---- shared footprint: map, photos and services panel match exactly ---- */
+.cr-section.sidebar-left #cr-services,
+.cr-section.sidebar-left [id*="cr-map"],
+.cr-section.sidebar-left [id^="cr-photo"] {
+  box-sizing: border-box;
+  width: var(--box-width) !important; 
+  height: var(--box-height) !important;
+  min-height: 0 !important;
+  margin: var(--box-top) auto 0 auto !important;   /* centred in the column */
   border-radius: 8px;
   overflow: hidden;
 }
 
-[id^="cr-photo"] p,
-[id^="cr-photo"] figure {
-  margin: 0 !important;
-  height: auto;
-}
 
-[id^="cr-photo"] img {
-  display: block;
-  width: auto !important;
-  height: auto !important;
-  max-width: 100% !important;
-  max-height: calc(75vh - 1rem); /*!important;  box height minus top margin and caption room */
-  margin: 0 auto;
-  object-fit: fill;
-}
+/* ==========================================================================
+   5. STICKY: MAP  (#cr-map)
+   ========================================================================== */
 
-[id^="cr-photo"] figcaption {
-  font-size: 0.8rem;
-  line-height: 1.25;
-  padding-top: 0.25rem;
-  text-align: center;
-  width: 100%;
-}
-
-/* Wrapper owns width + height */
 [id*="cr-map"] {
-  width: 98% !important;               /* keep your 98% here, only here */
-  height: 75vh !important;
-  min-height: 0 !important;
-  margin: 0 !important;
   padding: 0 !important;
-  border-radius: 8px !important;
   border: none !important;
-  overflow: hidden !important;
 }
 
-/* Descendants fill it — no 98%, no 75vh, no min-height */
+/* everything between the box and the iframe fills the box */
 [id*="cr-map"] .cell,
 [id*="cr-map"] .cell-output,
 [id*="cr-map"] .cell-output-display,
@@ -175,140 +301,112 @@
   max-width: none !important;
   margin: 0 !important;
   padding: 0 !important;
-  border-radius: 8px !important;
   border: none !important;
+  border-radius: 8px !important;
   overflow: hidden !important;
 }
 
-
-.cr-section.sidebar-left .sticky-col {
-  background-color: transparent !important;
-}
-.cr-section.sidebar-left {
-  background-color: #ffffff;         /* dark green */
+[id*="cr-map"] iframe {
+  width: 100% !important;
+  height: 100% !important;
+  border: none;
 }
 
-.sidebar-left section.narrative.trigger {
-  margin-bottom: 0.5rem !important;
-  padding-bottom: 0 !important;
-  min-height: auto !important;
-}
 
-.sidebar-left section.narrative.trigger + .trigger {
-  margin-top: 0 !important;
-  padding-top: 0 !important;
-}
+/* ==========================================================================
+   6. STICKY: PHOTOS  (#cr-photo-placeholder, #cr-photo-climateChange, ...)
+      Any sticky whose id starts with "cr-photo" gets this.
+   ========================================================================== */
 
-.sidebar-left .narrative h2,
-.sidebar-left .narrative h3 {
-  margin-bottom: 0.25rem !important;
-}
-
-.rangeland-nepal .narrative h2,
-.rangeland-nepal .narrative h3 {
-  font-family: "Be Vietnam Pro", sans-serif;
-  font-size: 2rem !important;
-  font-weight: 700;
-  color: #000000 !important;
-}
-
-.rangeland-nepal .narrative {
-  font-family: "Be Vietnam Pro", sans-serif;
-  font-size: 1rem;
-  font-weight: 400;
-}
-
-.rangeland-nepal .rangeland-stats strong {
-  display: block;
-  font-family: "Be Vietnam Pro", sans-serif;
-  font-size: 2.75rem;
-  font-weight: 500;
-  color: #2780e3;
-  line-height: 1.1;
-  margin-bottom: 0 !important;   /* was 0.25rem */
-}
-
-.rangeland-stats {
-  margin-top: 0.5rem;
-  padding-top: 1rem;
-  border-top: 1px solid rgba(0, 0, 0, 0.15);
+/* box: image centred horizontally and vertically */
+[id^="cr-photo"] {
   display: flex;
   flex-direction: column;
-  gap: 0.9rem;
-  font-size: 1.2rem;
-  line-height: 1.35;
-  color: #1f2421;
+  justify-content: center;
+  align-items: center;
+  padding: 0 !important;
 }
 
-.rangeland-stats p {
+[id^="cr-photo"] p {
   margin: 0 !important;
 }
 
-/* Enable mouse events and interaction across all Leaflet map containers */
-.sticky-col .sticky,
-.sticky-col .cell,
-.sticky-col .cell-output,
-.sticky-col .cell-output-display,
-[id*="cr-map"],
-.leaflet-container,
-.leaflet-pane,
-.leaflet-control-container {
-  pointer-events: auto !important;
+/* figure shrinks to the image width so the caption centres under it */
+[id^="cr-photo"] figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content !important;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto !important;
 }
 
-.cr-section .sticky {
-  transition: opacity 0.8s ease !important;
+/* images keep their own proportions and are scaled down to fit */
+[id^="cr-photo"] img {
+  display: block;
+  width: auto !important;
+  height: auto !important;
+  max-width: 100% !important;
+  max-height: calc(var(--box-height) - 1rem);   /* lower this if a caption gets cut off */
+  margin: 0 auto;
+  object-fit: contain;
 }
 
-/* Ensure the active sticky element explicitly captures all mouse and touch interactions */
-.cr-section .sticky.cr-active {
-  pointer-events: auto !important;
-  z-index: 10 !important;
-}
-.chart-overlay {
-  position: fixed;
-  bottom: 30px;
-  left: 30px;
-  width: 340px;
-  height: 220px;
-  background: rgba(255,255,255,0.95);
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-  padding: 12px;
-  z-index: 500;
-  pointer-events: auto;
+[id^="cr-photo"] figcaption {
+  width: 100%;
+  padding-top: 0.25rem;
+  font-size: 0.8rem;
+  line-height: 1.25;
+  text-align: center;
 }
 
+
+/* ==========================================================================
+   7. STICKY: SERVICES PANEL  (#cr-services)
+      The JS at the bottom of the .qmd adds class "in" when it becomes active.
+   ========================================================================== */
+
+/* container (the three cards) */
 .services {
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
-  margin: 0.75rem 0;
 }
 
+#cr-services {
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem !important;
+  background: #ffffff;
+}
+
+/* one category card (Material / Non-material / Regulating) */
 .svc-group {
   --c: #2a4034;
-  border-left: 5px solid var(--c);
-  background: rgba(255, 255, 255, 0.7);
-  border-radius: 6px;
   padding: 0.5rem 0.75rem;
+  border-left: 5px solid var(--c);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.7);
   opacity: 0;
   transform: translateX(-16px);
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 .svc-group p { margin: 0 !important; }
 
+/* category colours */
 .svc-material    { --c: #7a9a2e; }
 .svc-nonmaterial { --c: #8e5ea2; }
 .svc-regulating  { --c: #2e86ab; }
 
 .svc-title {
   display: block;
+  margin-bottom: 0.35rem;
   font-weight: 700;
   color: var(--c);
-  margin-bottom: 0.35rem;
 }
 
+/* one service (pill) */
 .chip {
   display: inline-block;
   margin: 0 0.25rem 0.3rem 0;
@@ -322,112 +420,108 @@
   transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-/* reveal: groups one after another, chips staggered inside each */
+/* larger sizes inside the sticky panel */
+#cr-services .svc-group { padding: 0.9rem 1.1rem; }
+#cr-services .svc-title { font-size: 1.4rem; margin-bottom: 0.6rem; }
+#cr-services .chip      { font-size: 1.1rem; padding: 0.25rem 0.8rem; }
+
+/* ---- reveal animation: cards one after another, pills staggered inside ---- */
 .services.in .svc-group { opacity: 1; transform: none; }
 .services.in .svc-group:nth-child(1) { transition-delay: 0s; }
 .services.in .svc-group:nth-child(2) { transition-delay: 0.6s; }
 .services.in .svc-group:nth-child(3) { transition-delay: 1.2s; }
 
 .services.in .chip { opacity: 1; transform: none; }
+
+/* Material (4 pills) */
 .services.in .svc-group:nth-child(1) .chip:nth-of-type(1) { transition-delay: 0.3s; }
 .services.in .svc-group:nth-child(1) .chip:nth-of-type(2) { transition-delay: 0.45s; }
 .services.in .svc-group:nth-child(1) .chip:nth-of-type(3) { transition-delay: 0.6s; }
 .services.in .svc-group:nth-child(1) .chip:nth-of-type(4) { transition-delay: 0.75s; }
 
+/* Non-material (3 pills) */
 .services.in .svc-group:nth-child(2) .chip:nth-of-type(1) { transition-delay: 0.9s; }
 .services.in .svc-group:nth-child(2) .chip:nth-of-type(2) { transition-delay: 1.05s; }
 .services.in .svc-group:nth-child(2) .chip:nth-of-type(3) { transition-delay: 1.2s; }
 
+/* Regulating (5 pills) */
 .services.in .svc-group:nth-child(3) .chip:nth-of-type(1) { transition-delay: 1.5s; }
 .services.in .svc-group:nth-child(3) .chip:nth-of-type(2) { transition-delay: 1.65s; }
 .services.in .svc-group:nth-child(3) .chip:nth-of-type(3) { transition-delay: 1.8s; }
 .services.in .svc-group:nth-child(3) .chip:nth-of-type(4) { transition-delay: 1.95s; }
 .services.in .svc-group:nth-child(3) .chip:nth-of-type(5) { transition-delay: 2.1s; }
 
-/* services panel: same footprint as the map */
-#cr-services {
-  width: 98% !important;
-  height: 75vh !important;
-  margin: 0 !important;
-  padding: 1rem 1.25rem !important;
-  border-radius: 8px;
-  box-sizing: border-box;
-  background: #ffffff;
-  justify-content: center;
-  gap: 1rem;
+
+/* ==========================================================================
+   8. SMALL SCREENS
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  :root {
+    --body-size: 1.1rem;
+    --h-size:    1.8rem;
+    --stat-size: 2.5rem;
+    --card-gap:  20vh;
+  }
+
+  .hero-section strong { font-size: 2.6rem !important; }
+
+  .cr-section.sidebar-left .narrative {
+    padding: 1.1rem 1.25rem !important;
+  }
 }
 
-#cr-services .svc-group { padding: 0.9rem 1.1rem; }
-#cr-services .svc-title { font-size: 1.4rem; margin-bottom: 0.6rem; }
-#cr-services .chip { font-size: 1.1rem; padding: 0.25rem 0.8rem; }
 
-/* hidden stickies must not catch the mouse (must come after the pointer-events: auto rules) */
-.cr-section .sticky:not(.cr-active),
-.cr-section .sticky:not(.cr-active) * {
-  pointer-events: none !important;
+/* ==========================================================================
+   9. LEGACY / UNUSED
+      Nothing in the current .qmd uses these. Delete if you don't plan to.
+   ========================================================================== */
+
+.cr-section.section-white {
+  position: relative;
 }
 
-/* iframe fills the map box */
-[id*="cr-map"] iframe {
-  width: 100% !important;
-  height: 100% !important;
-  border: none;
+.section-white .narrative {
+  background-color: rgba(255, 255, 255, 0.848) !important;
+  color: #1f2421 !important;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
 }
 
-.cr-section.sidebar-left #cr-services,
-.cr-section.sidebar-left [id*="cr-map"],
-.cr-section.sidebar-left [id^="cr-photo"] {
-  height: 75vh !important;
-  margin: 12.5vh auto 0 auto !important;   /* (100vh - 75vh) / 2 on top, centered horizontally */
-}
-
-[id^="cr-photo"] {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;   /* vertical */
-  align-items: center;       /* horizontal */
-}
-
-[id^="cr-photo"] figure {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: fit-content !important;
-  max-width: 100%;
-  margin: 0 auto !important;
-}
-
-/* Whole screen map adjustments (commented out for now, but can be enabled if needed) */
-/* Force the map and all its Quarto/Leaflet container wrappers to fill 100vw x 100vh */
-/* #cr-map,
-#cr-map .cell,
-#cr-map .cell-output,
-#cr-map .cell-output-display,
-#cr-map .folium-map,
-#cr-map div[style*="height"] {
-  width: 100vw !important;
-  height: 100vh !important;
-  max-width: none !important;
-  min-width: 100vw !important;
-  min-height: 100vh !important;
-  margin: 0 !important;
+.section-white .section-title-left {
+  position: absolute;
+  left: 6rem;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0;
+  z-index: 2;
+  background: none !important;
+  box-shadow: none !important;
   padding: 0 !important;
   border: none !important;
-  position: absolute !important;
-  top: 0 !important;
-  left: 0 !important;
-} */
+  color: #ffffff !important;
+  font-size: 3rem !important;
+  font-weight: 700;
+  line-height: 1.15;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+}
 
-/* Ensure the underlying Leaflet container fills the space */
-/* #cr-map .folium-map {
-  position: absolute !important;
-  top: 0 !important;
-  left: 0 !important;
-} */
+.chart-overlay {
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  width: 340px;
+  height: 220px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  z-index: 500;
+  pointer-events: auto;
+}
 
-/* #cr-map .folium-map,
-#cr-map .leaflet-container {
-  width: 100vw !important;
-  height: 100vh !important;
-  min-height: 100vh !important;
-} */
+.chart-overlay img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
