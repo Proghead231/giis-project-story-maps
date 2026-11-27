@@ -147,13 +147,6 @@ window.addEventListener("load", function () {
   sync();
 });
 </script>
+
 ``` 
 
-<footer class="cr-footer-box">
-  <div class="cr-footer-content">
-    <p>© 2026 Rangelands in Change · Your Organization</p>
-  </div>
-  <div class="cr-footer-watermark">
-    <img src="images/giis_logo_only.png" alt="Watermark Logo">
-  </div>
-</footer>
