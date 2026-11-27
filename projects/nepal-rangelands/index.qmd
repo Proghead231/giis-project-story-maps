@@ -15,13 +15,13 @@ format:
       narrative-font-size: "1.15rem"
     css: styles.css
 ---
-  
+    
 :::{.cr-section .hero-section layout="overlay-center"}
 
 **Rangelands in Change**\
 *Vegetation trends, pastoral livelihoods and pathways for management​ in Nepal.*\ 
 ![](images/giis_logo_halo.png){.hero-logo} @cr-bg
-
+ 
 :::{#cr-bg .full-bg}
 ![](images/cover.jpeg)
 :::
@@ -56,7 +56,7 @@ format:
 :::{#cr-photo-dryingLake}
 ![Lake drying](images/drying_lake.png)
 :::
-
+ 
 :::{#cr-map}
 ```{python}
 import importlib

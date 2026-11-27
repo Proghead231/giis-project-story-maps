@@ -19,13 +19,13 @@ field_sites = gpd.read_file("data/eco_survey_sites_json.geojson")
 dolpa_mapped_muni = gpd.read_file("data/dolpa_mapped_municipalities.geojson")
 
 VIEWS = {
-    "nat":     {"lat": 28.165295,  "lon": 84.470657, "zoom": 7},
-    "karnali": {"lat": 29.049975,  "lon": 82.151980, "zoom": 8},
+    "nat":     {"lat": 28.165295,  "lon": 84.470657, "zoom": 6.5},
+    "karnali": {"lat": 29.1761685,  "lon": 82.2224138, "zoom": 8},
     "field":   {"lat": 29.169920000000047, "lon": 82.51973000000004, "zoom": 9},
     "restoration":   {"lat": 29.2975564, "lon": 82.2855706, "zoom": 10},
     "thuloguthi": {"lat": 29.20410000000004, "lon": 82.30480000000006, "zoom": 15},
     "patrasi": {"lat": 29.3300433, "lon": 82.3067474, "zoom": 11},
-    "mapped_rangeland": {"lat": 29.2058908, "lon": 82.6381917, "zoom": 9}
+    "mapped_rangeland": {"lat": 29.208118, "lon": 82.7250815, "zoom": 9}
 }
 
 
@@ -39,6 +39,8 @@ class ViewController(MacroElement):
             {% macro script(this, kwargs) %}
             (function () {
                 var map = {{ this._parent.get_name() }};
+                map.options.zoomSnap = 0.1;   // Enables decimal zoom for setView() and flyTo()
+                map.options.zoomDelta = 0.5;  // Optional: smoother +/- UI button steps
                 var VIEWS = {{ this.views_json }};
                 var VIEW_LAYERS = {{ this.view_layers_json }};
                 var GROUPS = {
@@ -136,7 +138,7 @@ def build_field_group(name, keep=None):
     return g
 
 def make_map():
-    m = leafmap.Map(tiles=None)
+    m = leafmap.Map(tiles=None, zoom_snap=0.1, zoom_delta=0.5)
     # m.add_basemap("Stadia.StamenTerrain", api_key=STADIA_API_KEY)
     terrain = folium.TileLayer(
         tiles="https://server.arcgisonline.com/ArcGIS/rest/services/World_Terrain_Base/MapServer/tile/{z}/{y}/{x}",

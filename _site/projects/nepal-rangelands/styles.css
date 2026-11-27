@@ -527,20 +527,20 @@
 }
 
 /* ==========================================================================
-   9. GIIS Logo Watermak
+   10. GIIS Logo Watermak
    ========================================================================== */
-body::after {
+/*body::after {
   content: "";
   position: fixed;
-  bottom: 24px;
-  right: 24px;
-  width: 120px;                 /* Adjust width as needed */
-  height: 60px;                 /* Adjust height as needed */
+  left: 0; right: 0; bottom: 0;
+  height: 48px;
+  background-color: #0a4ca1; 
   background-image: url("images/giis_logo_only.png");
-  background-size: contain;
+  background-size: auto 70%;
   background-repeat: no-repeat;
-  background-position: bottom right;
-  opacity: 0.75;                /* Adjust transparency (1.0 = solid) */
-  z-index: 9999;                /* Keeps it above Closeread sticky layers */
-  pointer-events: none;         /* Prevents blocking links/scroll underneath */
-}
+  background-position: right 24px center;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.8
+}*/
