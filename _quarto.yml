@@ -3,13 +3,13 @@ project:
   output-dir: _site
 
 website:
-  title: "Spatial & Ecological Stories"
+  title: "Global Institute for Interdisciplinary Studies"
   navbar:
-    left:
-      - href: index.qmd
-        text: Home
+    background: "#0A4CA1"
+    logo: "images/giis_logo_only.png"
+    right:
       - href: projects/index.qmd
-        text: Stories & Projects
+        text: Project Stories
       - href: about.qmd
         text: About
 

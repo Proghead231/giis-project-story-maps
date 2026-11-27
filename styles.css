@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap');
+.navbar-logo {
+  max-height: 42px;               /* Adjust height as needed */
+  width: auto;
+}
+
+:root {
+  --bs-body-font-family: 'Be Vietnam Pro', sans-serif;
+  --bs-font-sans-serif: 'Be Vietnam Pro', sans-serif;
+}
+
+body, p, h1, h2, h3, h4, h5, h6, .navbar {
+  font-family: 'Be Vietnam Pro', sans-serif !important;
+}
+
+/* People Section */
+/* ==========================================================================
+   PEOPLE GRID (about page)
+   ========================================================================== */
+
+.people-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);   /* 3 people per row */
+  gap: 2.5rem 2rem;                        /* row gap, column gap */
+  margin: 1.5rem 0 3rem;
+}
+
+.person {
+  text-align: center;
+}
+
+.person p {
+  margin: 0;
+}
+
+/* square, cropped, circular photo: all photos end up the same size */
+.person-photo {
+  display: block;
+  width: 170px;
+  height: 170px;
+  margin: 0 auto 0.9rem;
+  object-fit: cover;
+  object-position: center top;   /* keeps faces in frame when cropping */
+  border-radius: 50%;            /* use 8px for rounded squares instead */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+.person-name {
+  display: block;
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.person-role {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.95rem;
+  color: #6c757d;
+}
+
+.person-areas {
+  display: block;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+/* fewer columns on smaller screens */
+@media (max-width: 900px) {
+  .people-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .people-grid { grid-template-columns: 1fr; }
+}
